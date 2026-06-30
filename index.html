@@ -9,12 +9,13 @@
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="logo">
     <div class="logo-icon">✎</div>
     Notes
   </div>
-  <button class="new-note-btn" id="new-note-btn">+ New Note</button>
+  <button class="new-note-btn" id="new-note-btn">＋ New Note</button>
   <nav class="sidebar-nav">
     <div class="nav-item active" data-cat="all">All Notes</div>
     <div class="nav-item" data-cat="pinned">Pinned</div>
@@ -26,33 +27,47 @@
   </nav>
 </aside>
 
+<!-- NOTE LIST (main view) -->
 <div class="note-list-panel">
+  <div id="pixel-snow-bg"></div>
+  <div class="snow-color-picker" id="snow-color-picker">
+    <button class="snow-swatch" data-color="#00736b" style="background:#00736b" title="Teal"></button>
+    <button class="snow-swatch" data-color="#f5a623" style="background:#f5a623" title="Amber"></button>
+    <button class="snow-swatch" data-color="#7c5cff" style="background:#7c5cff" title="Violet"></button>
+    <button class="snow-swatch" data-color="#e0466e" style="background:#e0466e" title="Rose"></button>
+    <button class="snow-swatch" data-color="#4ecdc4" style="background:#4ecdc4" title="Cyan"></button>
+    <input type="color" id="snow-color-custom" title="Custom color" value="#00736b" />
+  </div>
   <div class="list-header">
     <h2 id="list-heading">All Notes</h2>
     <span class="note-count" id="note-count">0</span>
   </div>
   <div class="search-box">
+    <span class="search-icon">🔍</span>
     <input type="text" id="search-input" placeholder="Search notes..." />
   </div>
-  <div class="notes-scroll" id="notes-scroll">
-    <div class="empty-list">Loading…</div>
+  <div class="notes-scroll-container">
+    <div class="notes-scroll" id="notes-scroll">
+      <div class="empty-list">Loading…</div>
+    </div>
+    <div class="top-gradient" id="top-gradient"></div>
+    <div class="bottom-gradient" id="bottom-gradient"></div>
   </div>
 </div>
 
-<div class="editor-panel">
+<!-- Backdrop for centered editor -->
+<div class="editor-backdrop" id="editor-backdrop"></div>
 
-  <div class="welcome-state" id="welcome-state">
-    <span class="big">✎</span>
-    <p>Select a note or create a new one</p>
-  </div>
-
-  <div id="editor-area" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+<!-- EDITOR (centered modal) -->
+<div class="editor-panel" id="editor-panel">
+  <div id="editor-area" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
     <div class="editor-toolbar">
-      <button class="toolbar-btn danger" id="delete-btn" title="Delete">🗑</button>
+      <button class="toolbar-btn" id="close-editor-btn" title="Close">✕</button>
     </div>
     <div class="editor-body">
       <input type="text" id="editor-title" placeholder="Title" />
       <div class="editor-meta">
+        <span>🕐</span>
         <span id="editor-date">—</span>
         <span class="dot">●</span>
         <select id="editor-category">
@@ -69,15 +84,27 @@
     </div>
     <div class="editor-actions">
       <button class="btn-save" id="save-btn">Save Note</button>
-      <button class="btn-cancel" id="discard-btn">Discard</button>
+      <button class="btn-danger" id="discard-btn">Delete</button>
     </div>
   </div>
-
 </div>
 
 <div id="toast"></div>
 
+<!-- Confirm delete modal -->
+<div id="confirm-overlay" class="confirm-overlay hidden">
+  <div class="confirm-box">
+    <p id="confirm-message">Delete this note?</p>
+    <div class="confirm-actions">
+      <button class="btn-cancel" id="confirm-cancel">Cancel</button>
+      <button class="btn-danger" id="confirm-ok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Supabase UMD build — works with plain <script> tags, no server needed -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="app.js"></script>
+<script type="module" src="pixel-snow.js"></script>
+<script defer src="app.js"></script>
 </body>
 </html>
