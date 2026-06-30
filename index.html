@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<!-- SIDEBAR -->
+  
 <aside class="sidebar">
   <div class="logo">
     <div class="logo-icon">✎</div>
@@ -27,7 +26,6 @@
   </nav>
 </aside>
 
-<!-- NOTE LIST (main view) -->
 <div class="note-list-panel">
   <div id="pixel-snow-bg"></div>
   <div class="snow-color-picker" id="snow-color-picker">
@@ -55,10 +53,8 @@
   </div>
 </div>
 
-<!-- Backdrop for centered editor -->
 <div class="editor-backdrop" id="editor-backdrop"></div>
 
-<!-- EDITOR (centered modal) -->
 <div class="editor-panel" id="editor-panel">
   <div id="editor-area" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
     <div class="editor-toolbar">
@@ -91,7 +87,6 @@
 
 <div id="toast"></div>
 
-<!-- Confirm delete modal -->
 <div id="confirm-overlay" class="confirm-overlay hidden">
   <div class="confirm-box">
     <p id="confirm-message">Delete this note?</p>
@@ -102,7 +97,6 @@
   </div>
 </div>
 
-<!-- Supabase UMD build — works with plain <script> tags, no server needed -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script type="module" src="pixel-snow.js"></script>
 <script defer src="app.js"></script>
